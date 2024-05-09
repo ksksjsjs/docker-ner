@@ -52,6 +52,13 @@ def evaluation():
     }
 
 
+@app.route('/work', methods=['POST,GET'])
+def work():
+    return {
+        'Task': 'work',
+        'Frontend': 'React',
+        'Backend': 'Flask'
+    }
 
 if __name__ == '__main__':
     app.run(debug=True)

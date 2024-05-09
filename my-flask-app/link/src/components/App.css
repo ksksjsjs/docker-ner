@@ -1,20 +1,18 @@
-.div1{
+.training{
     width: 500px;
-    height: 100px;
-    background-color: pink;
-    margin: 0px auto;
+    height: 200px;
+
 }
-.div2{
+.predict{
     width: 500px;
     height: 100px;
     background-color: #3A7734;
-    margin: 0px auto;
 }
-.div3{
+.evaluation{
     width: 500px;
     height: 100px;
     background-color: #6b46c1;
-    margin: 0px auto;
+
 }
 .title{
     width: 1000px;
@@ -26,4 +24,3 @@
 .body{
     background-color: black;
 }
-

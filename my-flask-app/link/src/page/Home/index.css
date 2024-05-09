@@ -1,0 +1,19 @@
+.logo{
+    width: 500px;
+    height: 500px;
+  
+    background-color: black;
+    margin: 0px auto;
+}
+.welcome{
+    width: 600px;
+    height: 300px;
+    margin: auto;
+    background-color: black;
+}
+.use-way{
+    width: 600px;
+    height: 300px;
+    margin: auto;
+    background-color: blue;
+}
