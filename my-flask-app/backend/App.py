@@ -21,8 +21,7 @@ def selection():
 
 @app.route('/training', methods=['POST'])
 def training():
-    model = request.form
-    print(model)
+    print('POST请求已经发送')
     return {
         'Task': 'training',
         'Frontend': 'React',
@@ -59,4 +58,4 @@ def work():
     }
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0',port=80)

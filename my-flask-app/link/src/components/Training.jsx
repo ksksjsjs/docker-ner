@@ -10,7 +10,7 @@ const Training = () =>{
     const [selectList, setSelectList] = useState([])
     useEffect(()=>{
       async function getList(){
-        const list = await axios.get("http://localhost:3004/list")
+        const list = await axios.get("/training")
         setSelectList(list.data)
       }
       getList()
@@ -21,7 +21,7 @@ const Training = () =>{
 
     const handleSubmit = (event) => {
       // 在这里使用 Axios 发送 POST 请求
-      axios.post('/training', event)
+      axios.post('http://192.168.49.2:31501/training', event)
         .then(response => {
           setTrain_flag(true)
           console.log(train_flag)  
