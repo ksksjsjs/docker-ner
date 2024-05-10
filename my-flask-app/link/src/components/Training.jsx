@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import { Button, Select, Form, Input,Flex,InputNumber} from 'antd';
-
+import { Button, Select, Form, Input,Flex,InputNumber, Spin} from 'antd';
+import { formToJSON } from 'axios';
 import './App.css'
-import FormItem from 'antd/es/form/FormItem';
 
 
 const Training = () =>{
@@ -18,25 +17,23 @@ const Training = () =>{
     },[])
   
     //发数据
-    const [selectedOption, setSelectedOption] = useState('');
-    
-    const handleChange = (event) => {
-      setSelectedOption(event.target.value);
-    };
+    const [train_flag, setTrain_flag] = useState(false)
+
     const handleSubmit = (event) => {
-      event.preventDefault();
-      const formData = new FormData(event.target);  
-      formData.append('selectedOption', selectedOption);
       // 在这里使用 Axios 发送 POST 请求
-      axios.post('/training', formData)
+      axios.post('/training', event)
         .then(response => {
-          alert('Training');
+          setTrain_flag(true)
+          console.log(train_flag)  
         })
         .catch(error => {
           console.error('There was a problem with your Axios operation:', error);
         });
     };
-  
+    
+    // const trainStop = ()=>{
+      
+    // }
     //进度条
     const [progress, setProgress] = useState(0);
     const fetchData = async () => {
@@ -54,40 +51,57 @@ const Training = () =>{
         // 处理错误
       }
     };
-  
-  
+    
     return(
     <div className='training'>
       <h3>模型训练</h3>
-      <Form onSubmit={handleSubmit}>
-        <Flex>
+      <Form onFinish={handleSubmit}>
+        <Flex gap='large'>
           <Form.Item label='模型：' name='model'>
-            <Select onChange={handleChange}style={{width: 120,}}>
-              {selectList.map(item=><option id={item.id}>{item.name}</option>)}
+            <Select style={{width: 100,}}  defaultValue= 'model1'
+              options={selectList.map((item)=>({
+                value:item.value,
+                label:item.name
+              }))}
+            >
             </Select>
           </Form.Item>
-          <Form.Item label='数据集：' name='dataset'>
-            <Select onChange={handleChange}style={{width: 120,}}>
-              {selectList.map(item=><option id={item.id}>{item.dataset}</option>)}
+          <Form.Item label='数据集:' name='dataset'>
+            <Select style={{width: 100,}} defaultValue= 'dataset1'
+              options={selectList.map((item)=>({
+                value:item.value,
+                label:item.name
+              }))}
+            >
             </Select>
           </Form.Item>
         </Flex>
-        <Flex>
+        <Flex gap='large'>
           <Form.Item label='参数1' name='Parameter1'>
-            <InputNumber/>
+            <InputNumber min={0} defaultValue={0}/>
           </Form.Item> 
           <Form.Item label='参数2' name='Parameter2'>
-            <InputNumber/>
+            <InputNumber min={0} defaultValue={0}/>
           </Form.Item> 
           <Form.Item label='参数3' name='Parameter3'>
-            <InputNumber/>
+            <InputNumber min={0} defaultValue={0}/>
           </Form.Item> 
         </Flex>
-        <Form.Item>
-          <Button type="primary" htmlType="submit" onClick={handleSubmit}>
-            Submit
-          </Button>
-        </Form.Item>
+        <Flex vertical = {false} gap='large'>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              训练
+            </Button>
+          </Form.Item>
+          <Form.Item>
+          {train_flag&& <Spin/>}
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit" >
+              停止
+            </Button>
+          </Form.Item>
+        </Flex>
       </Form>
       {/* <form method='POST'  onSubmit={handleSubmit}>
         <label>model:</label>

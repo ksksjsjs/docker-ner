@@ -1,27 +1,22 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-
+import { Form ,Input,Button,Flex} from 'antd';
 import './App.css'
 
 const Predict = () =>{
     //发数据并接受前端传来的数据
   
-    //设置输入文本状态
-    const [inputValue, setInputValue] = useState('');
     //设置后端返回数据状态
     const [responseData, setResponseData] = useState(null);
     //设置错误状态
     const [error, setError] = useState(null);
   
     //保持input文本框的状态
-    const handleChange = (event) => {
-      setInputValue(event.target.value);
-    };
-  
+
     const handleSubmit = (event) => {
       event.preventDefault();
       // 在这里使用 Axios 发送 POST 请求，将输入框中的值发送到后端
-      axios.post('http://127.0.0.1:5000/predict', { inputValue })
+      axios.post('http://127.0.0.1:5000/predict', event)
         .then(response => {
           console.log('Data sent successfully!');
           // 在这里处理成功的响应并设置状态
@@ -37,20 +32,26 @@ const Predict = () =>{
   
     return(
       <div className='predict'>
-        <h3>Model Predict</h3>
-          <form method="POST" onSubmit={handleSubmit}>
-            <label>String:</label>
-            <input type='text'  onChange={handleChange}></input>
-            {/* <Button size="small" variant="contained" type='submit'>Predict</Button> */}
-          </form>
+        <h3>模型预测</h3>
+        <Form onFinish={handleSubmit}>
+          <Flex vertical = {false} gap='middle'>
+            <Form.Item>
+              <Input size = 'large' placeholder="请输入句子"/>
+            </Form.Item>
+            <Form.Item>
+              <Button  type="primary" htmlType="submit" size='large'>
+                预测
+              </Button>
+            </Form.Item>
+          </Flex>
+        </Form>
         {error && <div>Error: {error}</div>}
         {responseData && (
           <div>
             <h2>Response from server:</h2>
             <p>{responseData}</p> 
           </div>
-        )}
-        <p></p>  
+        )} 
       </div>
     )
   }

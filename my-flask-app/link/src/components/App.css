@@ -1,19 +1,21 @@
 .training{
     width: 500px;
-    height: 200px;
-
+    height: 150px;
 }
 .predict{
     width: 500px;
-    height: 100px;
-    background-color: #3A7734;
+    height: 80px;
+    padding-bottom: 40px;
 }
 .evaluation{
     width: 500px;
-    height: 100px;
-    background-color: #6b46c1;
-
+    height: 80px;
 }
+.load{
+    width: 500px;
+    height: 80px;
+}
+
 .title{
     width: 1000px;
     height: 500px;
@@ -24,3 +26,5 @@
 .body{
     background-color: black;
 }
+
+

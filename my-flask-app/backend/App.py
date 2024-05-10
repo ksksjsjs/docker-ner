@@ -21,10 +21,8 @@ def selection():
 
 @app.route('/training', methods=['POST'])
 def training():
-    model = request.form.get('model')
-    dataset = request.form.get('dataset')
+    model = request.form
     print(model)
-    print(dataset)
     return {
         'Task': 'training',
         'Frontend': 'React',
