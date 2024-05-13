@@ -9,6 +9,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/work')
+def index_work():
+    return render_template('index.html')
+
 
 @app.route('/selection', methods=['POST'])
 def selection():
@@ -21,7 +25,7 @@ def selection():
 
 @app.route('/training', methods=['POST'])
 def training():
-    print('POST请求已经发送')
+    print("POST请求已发送")
     return {
         'Task': 'training',
         'Frontend': 'React',
@@ -31,7 +35,6 @@ def training():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-
     return {
         'task': 'predict',
         'frontend': 'React',
