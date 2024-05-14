@@ -22,6 +22,27 @@ def selection():
         'Backend': 'Flask'
     }
 
+#TODO: 接GET请求 用json返回
+
+# {
+#     "list":[
+#         {
+#             "value": 1,
+#             "name":"model1",
+#             "dataset":"dataset1"
+#         },
+#         {
+#             "value": 2,
+#             "name":"model2",
+#             "dataset":"dataset2"
+#         },
+#         {
+#             "value": 3,
+#             "name":"model3",
+#             "dataset":"dataset3"
+#         }
+#     ]
+# }
 
 @app.route('/training', methods=['POST'])
 def training():
