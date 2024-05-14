@@ -35,12 +35,11 @@ def training():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    return {
-        'task': 'predict',
-        'frontend': 'React',
-        'backend': 'Flask',
-        'result' : 'success'
-    }
+    input_str = request.json.get('str')
+    print(input_str)
+    print("DEBUG: ",type(input_str))
+    
+    return "render"
 
 
 @app.route('/evaluation', methods=['GET'])
